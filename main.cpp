@@ -44,6 +44,31 @@ Node* addNode(int data){
     return newNode;
 }
 
+Node* insertNode(int data, int position){
+    Node* current = head;
+
+    // Gets the current->next ptr into the node we want to insert by going "through" 
+    // the list by looping until position is 0
+    while(current != nullptr && position != 0){
+        current = current->next;
+        position--; 
+    }
+    if(position != 0){
+        cout << "Requested position too far into the list" << endl;
+        return nullptr;
+    }
+    
+    Node* newNode = new Node;
+    if(newNode == nullptr)
+        return nullptr;
+
+    newNode->data = data;
+    newNode->next = current->next;
+    current->next = newNode;
+
+    return newNode;
+}
+
 void printList(){
     if(head == nullptr){
         cout << "The list is empty" << endl;
@@ -67,15 +92,27 @@ int main(){
         if(option > 0 && option <= 5){
             switch(option){
                 case 1:{
+                    // Add a node
                     int dataToAdd;
                     cout << "What data should I add: ";
                     cin >> dataToAdd;
                     Node* newNode = addNode(dataToAdd);
-                    // Add a node
+                    
+                    if(newNode == nullptr)
+                        cout << "Failed to add a node";
                     break;
                 }
                 case 2:{
                     // Insert a node
+                    int dataToInsert, position;
+                    cout << "What data should I insert: ";
+                    cin >> dataToInsert;
+                    cout << "In what position: ";
+                    cin >> position;
+                    Node* newNode = insertNode(dataToInsert, position);
+
+                    if(newNode == nullptr)
+                        cout << "Failed to insert a node";
                     break;
                 } 
                 case 3:{

@@ -69,6 +69,30 @@ Node* insertNode(int data, int position){
     return newNode;
 }
 
+bool removeNode(int data){
+    Node* current = head;
+    Node* prev = head;
+
+    while(current != nullptr){
+        if(current->data == data){
+            if(current == head){
+                head = current->next;
+                delete current;
+            }
+            else{
+                prev->next = current->next;
+                delete current;
+            }
+
+            return true;
+        }
+        prev = current;
+        current = current->next;
+    }
+
+    return false;
+}
+
 void printList(){
     if(head == nullptr){
         cout << "The list is empty" << endl;
@@ -117,6 +141,12 @@ int main(){
                 } 
                 case 3:{
                     // Remove a node
+                    int dataToRemove;
+                    cout << "What data should I remove: ";
+                    cin >> dataToRemove;
+                    
+                    if((!removeNode(dataToRemove)))
+                        cout << "Data not found";
                     break;
                 }
                 case 4:{

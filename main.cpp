@@ -9,7 +9,7 @@ public:
 Node* head = nullptr;
 
 void printMenu(){
-    cout << "You have the following options:" << endl;
+    cout << "\nYou have the following options:" << endl;
     cout << "\t1. Add a node to the list" << endl;
     cout << "\t2. Insert a node to the list" << endl;
     cout << "\t3. Remove a node from the list" << endl;
@@ -57,15 +57,14 @@ void printList(){
     } 
     return;    
 }
-int main(){
-    printMenu();
 
+int main(){
     int option = 0;
     while(option != 5){
         printMenu();
         cin >> option;
 
-        if(option > 5 && option <= 5){
+        if(option > 0 && option <= 5){
             switch(option){
                 case 1:{
                     int dataToAdd;
